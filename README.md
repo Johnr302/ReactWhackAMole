@@ -1,2 +1,0 @@
-# ReactWackAMole
-Created with CodeSandbox
