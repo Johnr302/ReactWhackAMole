@@ -2,3 +2,24 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+#gameBoard {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  width: 340px;
+  height: 340px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  border-style: solid;
+  border-color: black;
+}
+
+.mole {
+  background-image: url("https://media.daysoftheyear.com/20171223114913/mole-day.jpg");
+  background-size: cover;
+}
