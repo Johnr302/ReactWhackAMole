@@ -1,19 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { timer } from "./timer.js";
 import { moveMole } from "./moveMole.js";
 import "./styles.css";
 
-let score = 0;
+// let score = 0;
 
 let timerId;
-
+let hitPosition = null
 export default function App() {
+  // let timeLeft = document.querySelector("#time-left");
+
+  // const [hitPosition, setHitPosition] = useState(null);
+  const [score, setScore] = useState(0);
+
   useEffect(() => {
     timerId = setInterval(() => {
-      moveMole();
+      hitPosition = moveMole();
+      console.log(hitPosition);
       timer();
     }, 1000);
+    // setScore(9);
   });
 
   return (
@@ -24,10 +31,8 @@ export default function App() {
       <h3>Timer: </h3>
       <h3 id="time-left">60</h3>
 
-      {/* {timer()} */}
-
       <div id="gameBoard">
-        <div className="square" id="1" />
+        <div className="square" id="1" onclick={} />
         <div className="square" id="2" />
         <div className="square" id="3" />
         <div className="square" id="4" />

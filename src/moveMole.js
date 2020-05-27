@@ -1,4 +1,4 @@
-const moveMole = () => {
+const moveMole = setHitPosition => {
   const squares = document.querySelectorAll(".square");
 
   squares.forEach(square => {
@@ -8,6 +8,7 @@ const moveMole = () => {
   let randomNumber = Math.ceil(Math.random() * 9);
   const element = document.getElementById(randomNumber);
   element.classList.add("mole");
+  return randomNumber;
 };
 
 export { moveMole };
