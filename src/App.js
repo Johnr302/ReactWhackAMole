@@ -22,7 +22,7 @@ export default function App() {
       <h2>Score: </h2>
       <h2 id="score">0</h2>
       <h3>Timer: </h3>
-      <h3 id="time-left">60</h3>
+      <h3 id="time-left">30</h3>
 
       <div id="gameBoard">
         <div

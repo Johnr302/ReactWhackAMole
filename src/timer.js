@@ -10,6 +10,7 @@ const timer = () => {
   if (currentTime === 0) {
     timeLeft.textContent = 30;
     alert("GAME OVER! Your final score is " + finalScore); //+ result);
+    score.textContent = 0;
   }
 };
 
