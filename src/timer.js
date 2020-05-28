@@ -7,7 +7,7 @@ const timer = () => {
   currentTime--;
   timeLeft.textContent = currentTime;
 
-  if (currentTime === 0) {
+  if (currentTime === -1) {
     timeLeft.textContent = 30;
     alert("GAME OVER! Your final score is " + finalScore); //+ result);
     score.textContent = 0;
