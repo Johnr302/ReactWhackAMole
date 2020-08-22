@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <section>
-      <h1>Wack A Mole</h1>
+      <h1>Whack-A-Mole</h1>
 
       <h2>Score: </h2>
       <h2 id="score">0</h2>
@@ -28,63 +28,63 @@ export default function App() {
         <div
           className="square"
           id="1"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="2"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="3"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="4"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="5"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="6"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="7"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="8"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
         <div
           className="square"
           id="9"
-          onClick={event => {
+          onClick={(event) => {
             hitMole(event, hitPosition);
           }}
         />
