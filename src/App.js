@@ -5,13 +5,15 @@ import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
 
+// useState for button to start game
+
 let timerId;
 let hitPosition = null;
 export default function App() {
   useEffect(() => {
     timerId = setInterval(() => {
       hitPosition = moveMole();
-      timer();
+      timer(timerId);
     }, 1000);
   });
 
