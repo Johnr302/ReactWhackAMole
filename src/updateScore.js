@@ -2,12 +2,6 @@
 
 //This function updates the score
 
-const updateScore = () => {
-  let score = document.querySelector("#score");
-  let currentScore = score.textContent;
-
-  currentScore++;
-  score.textContent = currentScore;
-};
+const updateScore = () => {};
 
 export { updateScore };

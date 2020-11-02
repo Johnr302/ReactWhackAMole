@@ -1,6 +1,4 @@
 const timer = (timerId) => {
-  let score = document.querySelector("#score");
-  let finalScore = score.textContent;
   let timeLeft = document.querySelector("#time-left");
   let currentTime = timeLeft.textContent;
 
@@ -9,10 +7,10 @@ const timer = (timerId) => {
 
   if (currentTime === -1) {
     timeLeft.textContent = 30;
-    console.log("GAME OVER! Your final score is " + finalScore);
-    score.textContent = 0;
+    console.log("GAME OVER! Your final score is ");
+
     clearInterval(timerId);
   }
 };
 
-export { timer };
+export default timer;
