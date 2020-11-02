@@ -1,5 +1,4 @@
 import React from "react";
-// import { updateScore } from "../updateScore";
 
 const Score = (props) => {
   const { score } = props;
