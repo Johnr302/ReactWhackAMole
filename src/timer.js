@@ -8,7 +8,6 @@ const timer = (timerId) => {
   if (currentTime === -1) {
     timeLeft.textContent = 30;
     console.log("GAME OVER! Your final score is ");
-
     clearInterval(timerId);
   }
 };

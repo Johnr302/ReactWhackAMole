@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 
 import Score from "./components/Score";
-import timer from "./timer.js";
-import { moveMole } from "./moveMole.js";
+import Timer from "./components/Timer";
+// import timer from "./timer.js";
+// import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
 
 // useState for button to start game
-let timerId;
+// let timerId;
 let hitPosition = null;
 
 export default function App() {
   const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    timerId = setInterval(() => {
-      hitPosition = moveMole();
-      timer(timerId);
-    }, 1000);
-  });
+  // useEffect(() => {
+  //   timerId = setInterval(() => {
+  //     hitPosition = moveMole();
+  //     timer(timerId);
+  //   }, 1000);
+  // });
 
   return (
     <section>
       <h1>Whack-A-Mole</h1>
-
       <Score score={score} />
-      <h3>Timer: </h3>
-      <h3 id="time-left">30</h3>
+
+      <Timer />
 
       <div id="gameBoard">
         <div
