@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Score from "./components/Score";
 import Timer from "./components/Timer";
-// import timer from "./timer.js";
 // import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
@@ -24,6 +23,7 @@ export default function App() {
   return (
     <section>
       <h1>Whack-A-Mole</h1>
+
       <Score score={score} />
 
       <Timer />

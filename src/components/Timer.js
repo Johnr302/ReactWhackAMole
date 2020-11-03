@@ -1,24 +1,39 @@
 import React, { useState } from "react";
 
+let intervalID = null;
+
 const Timer = () => {
-  const [gameTimer, setGameTimer] = useState(30);
+  const gameLength = 3;
+  const [gameTimer, setGameTimer] = useState(gameLength);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const countDown = () => {
-    if (gameTimer > 0) {
-      setInterval(
-        () =>
-          setGameTimer((gameTimer) => {
-            return gameTimer - 1;
-          }),
-        1000
-      );
-    } else alert("game over");
+    setGameStarted(true);
+
+    intervalID = setInterval(() => {
+      setGameTimer((gameTimer) => {
+        if (gameTimer === 0) {
+          setGameStarted(false);
+          clearInterval(intervalID);
+          return gameLength;
+        }
+        return gameTimer - 1;
+      });
+    }, 1000);
   };
 
   return (
     <section>
       <h3>Timer: {gameTimer} </h3>
-      <button onClick={countDown}>Start Game</button>
+      <button
+        onClick={(event) => {
+          event.preventDefault();
+          countDown();
+        }}
+        disabled={gameStarted}
+      >
+        Start Game
+      </button>
     </section>
   );
 };
