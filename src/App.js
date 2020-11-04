@@ -2,23 +2,25 @@ import React, { useEffect, useState } from "react";
 
 import Score from "./components/Score";
 import Timer from "./components/Timer";
-// import { moveMole } from "./moveMole.js";
+import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
 
 // useState for button to start game
-// let timerId;
+let timerId;
 let hitPosition = null;
-
 export default function App() {
   const [score, setScore] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [gameTimer, setGameTimer] = useState(3);
+  const [gameLength, setGameLength] = useState(3);
 
-  // useEffect(() => {
-  //   timerId = setInterval(() => {
-  //     hitPosition = moveMole();
-  //     timer(timerId);
-  //   }, 1000);
-  // });
+  useEffect(() => {
+    timerId = setInterval(() => {
+      hitPosition = moveMole();
+      // timer(timerId);
+    }, 1000);
+  });
 
   return (
     <section>
@@ -26,7 +28,13 @@ export default function App() {
 
       <Score score={score} />
 
-      <Timer />
+      <Timer
+        gameStarted={gameStarted}
+        setGameStarted={setGameStarted}
+        gameTimer={gameTimer}
+        setGameTimer={setGameTimer}
+        gameLength={gameLength}
+      />
 
       <div id="gameBoard">
         <div

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 let intervalID = null;
+const gameLength = 3;
 
-const Timer = () => {
-  const gameLength = 3;
+const Timer = (props) => {
   const [gameTimer, setGameTimer] = useState(gameLength);
-  const [gameStarted, setGameStarted] = useState(false);
+  const { gameStarted, setGameStarted } = props;
 
   const countDown = () => {
     setGameStarted(true);
