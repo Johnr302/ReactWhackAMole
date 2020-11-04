@@ -1,19 +1,21 @@
 import React, { useState } from "react";
+import { GAMESTATE } from "../constants";
 
 let intervalID = null;
 const gameLength = 3;
 
 const Timer = (props) => {
-  const [gameTimer, setGameTimer] = useState(gameLength);
-  const { gameStarted, setGameStarted } = props;
+  const [gameTimer, setGameTimer] = useState(0);
+  const { gameState, setGameState } = props;
 
   const countDown = () => {
-    setGameStarted(true);
+    setGameTimer(gameLength);
+    setGameState(GAMESTATE.STARTED);
 
     intervalID = setInterval(() => {
       setGameTimer((gameTimer) => {
         if (gameTimer === 0) {
-          setGameStarted(false);
+          setGameState(GAMESTATE.FINISHED);
           clearInterval(intervalID);
           return gameLength;
         }
@@ -30,7 +32,7 @@ const Timer = (props) => {
           event.preventDefault();
           countDown();
         }}
-        disabled={gameStarted}
+        disabled={gameState === GAMESTATE.STARTED}
       >
         Start Game
       </button>
