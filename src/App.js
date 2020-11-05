@@ -1,93 +1,65 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { timer } from "./timer.js";
+import Score from "./components/Score";
+import Timer from "./components/Timer";
+import GameOver from "./components/GameOver";
+import { makeMoleHoles } from "./components/MoleHoles";
 import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
+import { GAMESTATE } from "./constants";
 
-let timerId;
-let hitPosition = null;
+// useState for button to start game
+let intervalID;
+
+const startMovingMole = (setHitPosition) => {
+  let intervalId = setInterval(() => {
+    setHitPosition(moveMole());
+  }, 1000);
+
+  return intervalId;
+};
+
+const stopMovingMole = (id) => {
+  clearInterval(id);
+};
+
 export default function App() {
+  const [score, setScore] = useState(0);
+  const [gameState, setGameState] = useState(GAMESTATE.NOT_STARTED);
+  const [hitPosition, setHitPosition] = useState(null);
+
   useEffect(() => {
-    timerId = setInterval(() => {
-      hitPosition = moveMole();
-      timer();
-    }, 1000);
-  });
+    if (gameState === GAMESTATE.STARTED) {
+      intervalID = startMovingMole(setHitPosition);
+      setScore(0);
+    }
+
+    if (gameState === GAMESTATE.FINISHED) {
+      // display score
+      // display game over
+      stopMovingMole(intervalID);
+    }
+  }, [gameState]);
+
+  const onMoleHitClickHandler = (event) => {
+    if (gameState === GAMESTATE.STARTED) {
+      if (hitMole(event, hitPosition) === true) {
+        setScore(score + 1);
+      }
+    }
+  };
 
   return (
     <section>
       <h1>Whack-A-Mole</h1>
 
-      <h2>Score: </h2>
-      <h2 id="score">0</h2>
-      <h3>Timer: </h3>
-      <h3 id="time-left">30</h3>
+      <Score score={score} />
 
+      <Timer gameState={gameState} setGameState={setGameState} />
+      {gameState === GAMESTATE.FINISHED ? <GameOver score={score} /> : null}
       <div id="gameBoard">
-        <div
-          className="square"
-          id="1"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="2"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="3"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="4"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="5"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="6"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="7"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="8"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
-        <div
-          className="square"
-          id="9"
-          onClick={(event) => {
-            hitMole(event, hitPosition);
-          }}
-        />
+        {makeMoleHoles(gameState, onMoleHitClickHandler)}
       </div>
     </section>
   );

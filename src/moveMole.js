@@ -1,14 +1,16 @@
-const moveMole = setHitPosition => {
+import { randomNumberGenerator } from "./randomNumberGenerator";
+
+const moveMole = () => {
   const squares = document.querySelectorAll(".square");
 
-  squares.forEach(square => {
+  squares.forEach((square) => {
     square.classList.remove("mole");
   });
 
-  let randomNumber = Math.ceil(Math.random() * 9);
-  const element = document.getElementById(randomNumber);
+  let newHitPosition = randomNumberGenerator();
+  const element = document.getElementById(newHitPosition);
   element.classList.add("mole");
-  return randomNumber;
+  return newHitPosition;
 };
 
 export { moveMole };
