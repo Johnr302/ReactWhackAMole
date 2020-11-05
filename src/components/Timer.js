@@ -14,10 +14,9 @@ const Timer = (props) => {
 
     intervalID = setInterval(() => {
       setGameTimer((gameTimer) => {
-        if (gameTimer === 0) {
+        if (gameTimer === 1) {
           setGameState(GAMESTATE.FINISHED);
           clearInterval(intervalID);
-          return gameLength;
         }
         return gameTimer - 1;
       });

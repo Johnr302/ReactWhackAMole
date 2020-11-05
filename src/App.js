@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import Score from "./components/Score";
 import Timer from "./components/Timer";
+import GameOver from "./components/GameOver";
+import { makeMoleHoles } from "./components/MoleHoles";
 import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
@@ -9,11 +11,10 @@ import { GAMESTATE } from "./constants";
 
 // useState for button to start game
 let intervalID;
-let hitPosition = null;
 
-const startMovingMole = () => {
+const startMovingMole = (setHitPosition) => {
   let intervalId = setInterval(() => {
-    hitPosition = moveMole();
+    setHitPosition(moveMole());
   }, 1000);
 
   return intervalId;
@@ -26,10 +27,11 @@ const stopMovingMole = (id) => {
 export default function App() {
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState(GAMESTATE.NOT_STARTED);
+  const [hitPosition, setHitPosition] = useState(null);
 
   useEffect(() => {
     if (gameState === GAMESTATE.STARTED) {
-      intervalID = startMovingMole();
+      intervalID = startMovingMole(setHitPosition);
       setScore(0);
     }
 
@@ -40,6 +42,14 @@ export default function App() {
     }
   }, [gameState]);
 
+  const onMoleHitClickHandler = (event) => {
+    if (gameState === GAMESTATE.STARTED) {
+      if (hitMole(event, hitPosition) === true) {
+        setScore(score + 1);
+      }
+    }
+  };
+
   return (
     <section>
       <h1>Whack-A-Mole</h1>
@@ -47,115 +57,9 @@ export default function App() {
       <Score score={score} />
 
       <Timer gameState={gameState} setGameState={setGameState} />
-
+      {gameState === GAMESTATE.FINISHED ? <GameOver score={score} /> : null}
       <div id="gameBoard">
-        <div
-          className="square"
-          id="1"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="2"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="3"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="4"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="5"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="6"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="7"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="8"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-          disabled={gameState === GAMESTATE.FINISHED}
-        />
-        <div
-          className="square"
-          id="9"
-          onClick={(event) => {
-            if (gameState === GAMESTATE.STARTED) {
-              if (hitMole(event, hitPosition) === true) {
-                setScore(score + 1);
-              }
-            }
-          }}
-        />
+        {makeMoleHoles(gameState, onMoleHitClickHandler)}
       </div>
     </section>
   );
