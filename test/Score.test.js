@@ -1,13 +1,19 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Score from "../src/components/Score";
+import Enzyme, { shallow } from "enzyme";
 
-// it("");
+import Score from "../src/components/Score";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("<Score />", () => {
   it("renders three <Score /> components", () => {
-    const wrapper = shallow(<score />);
-    // console.log(wrapper.debug());
-    expect(wrapper.find(Score)).to.have.lengthOf(1);
+    const wrapper = shallow(<Score />);
+    expect(wrapper.find(".score")).toHaveLength(1);
+  });
+
+  it("renders a <Score /> components with a number", () => {
+    const wrapper = shallow(<Score score={3} />);
+    expect(wrapper.text()).toEqual(`Score: 3`);
   });
 });
