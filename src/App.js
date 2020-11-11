@@ -53,11 +53,9 @@ export default function App() {
   return (
     <section>
       <h1>Whack-A-Mole</h1>
-
       <Score score={score} />
-
-      <Timer gameState={gameState} setGameState={setGameState} />
       {gameState === GAMESTATE.FINISHED ? <GameOver score={score} /> : null}
+      <Timer gameState={gameState} setGameState={setGameState} />
       <div id="gameBoard">
         {makeMoleHoles(gameState, onMoleHitClickHandler)}
       </div>
