@@ -54,3 +54,7 @@ body {
   display: inline-block;
   margin-right: 8px;
 }
+
+.StartButton {
+  margin-bottom: 10px;
+}

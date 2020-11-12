@@ -27,6 +27,7 @@ const Timer = (props) => {
     <section>
       <h3>Timer: {gameTimer} </h3>
       <button
+        className="StartButton"
         onClick={(event) => {
           event.preventDefault();
           countDown();
