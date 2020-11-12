@@ -38,5 +38,5 @@ const Timer = (props) => {
     </section>
   );
 };
-
+// test timer works and html text shows
 export default Timer;
