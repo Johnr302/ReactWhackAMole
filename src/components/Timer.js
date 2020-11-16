@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GAMESTATE } from "../constants";
 
 let intervalID = null;
-const gameLength = 1;
+const gameLength = 30;
 
 const Timer = (props) => {
   const [gameTimer, setGameTimer] = useState(0);

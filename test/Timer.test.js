@@ -13,7 +13,7 @@ describe("<Timer />", () => {
   });
 
   it("renders a <Timer /> components with a number", () => {
-    const wrapper = shallow(<Timer gameTimer={30} />);
+    const wrapper = shallow(<Timer />);
     console.log(wrapper.text());
     expect(wrapper.text()).toEqual("Timer: 0 Start Game");
   });
