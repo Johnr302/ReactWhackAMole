@@ -27,6 +27,7 @@ const Timer = (props) => {
     <section>
       <h3>Timer: {gameTimer} </h3>
       <button
+        className="startButton"
         onClick={(event) => {
           event.preventDefault();
           countDown();
@@ -38,5 +39,5 @@ const Timer = (props) => {
     </section>
   );
 };
-
+// test timer works and html text shows
 export default Timer;
