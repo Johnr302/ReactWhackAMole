@@ -7,12 +7,12 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("<Score />", () => {
-  it("renders three <Score /> components", () => {
+  it("renders <Score /> component", () => {
     const wrapper = shallow(<Score />);
     expect(wrapper.find(".score")).toHaveLength(1);
   });
 
-  it("renders a <Score /> components with a number", () => {
+  it("renders a <Score /> component with a number", () => {
     const wrapper = shallow(<Score score={3} />);
     expect(wrapper.text()).toEqual(`Score: 3`);
   });
