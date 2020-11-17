@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GAMESTATE } from "../constants";
 
 let intervalID = null;
-const gameLength = 30;
+const gameLength = 3;
 
 const Timer = (props) => {
   const [gameTimer, setGameTimer] = useState(0);
@@ -14,14 +14,17 @@ const Timer = (props) => {
 
     intervalID = setInterval(() => {
       setGameTimer((gameTimer) => {
-        if (gameTimer === 1) {
-          setGameState(GAMESTATE.FINISHED);
-          clearInterval(intervalID);
-        }
         return gameTimer - 1;
       });
     }, 1000);
   };
+
+  useEffect(() => {
+    if (gameTimer === 0) {
+      setGameState(GAMESTATE.FINISHED);
+      clearInterval(intervalID);
+    }
+  });
 
   return (
     <section>
