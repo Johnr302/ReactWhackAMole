@@ -7,7 +7,7 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("<Timer />", () => {
-  it("renders three <Timer /> components", () => {
+  it("renders <Timer /> components", () => {
     const wrapper = shallow(<Timer />);
     expect(wrapper.find("h3")).toHaveLength(1);
   });
