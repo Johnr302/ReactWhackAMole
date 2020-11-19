@@ -22,7 +22,7 @@ const MoleHoles = (props) => {
 
   return (
     <div
-      className="square"
+      className="circle"
       id={id}
       onClick={onMoleHitClickHandler}
       disabled={gameState === GAMESTATE.FINISHED}
