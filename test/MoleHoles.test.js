@@ -17,14 +17,15 @@ describe("MoleHoles", () => {
   });
 
   it(`renders the Moleholes disabled if the gamestate property equals "finished"`, () => {
-    const wrapper = shallow(<MoleHoles gameState="finished" />).props();
-    console.warn(wrapper.disabled);
-    expect(wrapper.disabled).toBe(true);
+    const wrapper = shallow(<MoleHoles gameState="finished" />);
+    const props = wrapper.props();
+    expect(props.disabled).toBe(true);
+
   });
 
   it(`renders the Moleholes enabled if the gamestate property equals "started"`, () => {
-    const wrapper = shallow(<MoleHoles gameState="started" />).props();
-    console.warn(wrapper.disabled);
-    expect(wrapper.disabled).toBe(false);
+    const wrapper = shallow(<MoleHoles gameState="started" />);
+    const props = wrapper.props();
+    expect(props.disabled).toBe(false);
   });
 });
