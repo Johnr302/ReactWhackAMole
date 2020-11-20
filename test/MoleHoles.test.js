@@ -7,27 +7,24 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("MoleHoles", () => {
-  it("renders <MoleHoles /> component", () => {
+  it("renders  a <MoleHoles /> component", () => {
     const wrapper = shallow(<MoleHoles />);
     expect(wrapper.find(".circle")).toHaveLength(1);
   });
-  it("renders a <MoleHoles />component with a number", () => {
-    const wrapper = shallow(<MoleHoles />);
-    expect(wrapper.text()).toEqual(``);
+
+  it("has a makeMolesHoles method that returns an array of 9 MoleHoles components", () => {
+    expect(makeMoleHoles("", () => {})).toHaveLength(9);
   });
 
-  //   it('shows a MoleHole component 9 times', () => {
-  //     const testee = shallow(
-  //       <MoleHoles />
-  //     );
+  it(`renders the Moleholes disabled if the gamestate property equals "finished"`, () => {
+    const wrapper = shallow(<MoleHoles gameState="finished" />).props();
+    console.warn(wrapper.disabled);
+    expect(wrapper.disabled).toBe(true);
+  });
 
-  //     const makeMoleHoles = testee.find('.circle');
-
-  //     expect(placeComponents.length).toEqual(places.length);
-
-  //     placeComponents.forEach((placeComponent, index) => {
-  //           expect(placeComponent.prop('place')).toEqual(places[index]);
-  //     });
-
-  //   });
+  it(`renders the Moleholes enabled if the gamestate property equals "started"`, () => {
+    const wrapper = shallow(<MoleHoles gameState="started" />).props();
+    console.warn(wrapper.disabled);
+    expect(wrapper.disabled).toBe(false);
+  });
 });
