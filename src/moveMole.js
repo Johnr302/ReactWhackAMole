@@ -1,10 +1,10 @@
 import { randomNumberGenerator } from "./randomNumberGenerator";
 
 const moveMole = () => {
-  const squares = document.querySelectorAll(".square");
+  const circles = document.querySelectorAll(".circle");
 
-  squares.forEach((square) => {
-    square.classList.remove("mole");
+  circles.forEach((circle) => {
+    circle.classList.remove("mole");
   });
 
   let newHitPosition = randomNumberGenerator();

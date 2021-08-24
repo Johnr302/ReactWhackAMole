@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { GAMESTATE } from "../constants";
+import { GAME_STATE } from "../constants";
 
 let intervalID = null;
-const gameLength = 3;
+const gameLength = 30;
 
 const Timer = (props) => {
   const [gameTimer, setGameTimer] = useState(0);
@@ -10,7 +10,7 @@ const Timer = (props) => {
 
   const countDown = () => {
     setGameTimer(gameLength);
-    setGameState(GAMESTATE.STARTED);
+    setGameState(GAME_STATE.STARTED);
 
     intervalID = setInterval(() => {
       setGameTimer((gameTimer) => {
@@ -21,7 +21,7 @@ const Timer = (props) => {
 
   useEffect(() => {
     if (gameTimer === 0) {
-      setGameState(GAMESTATE.FINISHED);
+      setGameState(GAME_STATE.FINISHED);
       clearInterval(intervalID);
     }
   });
@@ -35,12 +35,11 @@ const Timer = (props) => {
           event.preventDefault();
           countDown();
         }}
-        disabled={gameState === GAMESTATE.STARTED}
+        disabled={gameState === GAME_STATE.STARTED}
       >
         Start Game
       </button>
     </section>
   );
 };
-// test timer works and html text shows
 export default Timer;

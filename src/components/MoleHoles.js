@@ -1,5 +1,5 @@
 import React from "react";
-import { GAMESTATE } from "../constants";
+import { GAME_STATE } from "../constants";
 
 const makeMoleHoles = (gameState, onMoleHitClickHandler) => {
   let result = [];
@@ -25,7 +25,7 @@ const MoleHoles = (props) => {
       className="circle"
       id={id}
       onClick={onMoleHitClickHandler}
-      disabled={gameState === GAMESTATE.FINISHED}
+      disabled={gameState === GAME_STATE.FINISHED}
     />
   );
 };

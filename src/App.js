@@ -7,7 +7,7 @@ import { makeMoleHoles } from "./components/MoleHoles";
 import { moveMole } from "./moveMole.js";
 import { hitMole } from "./hitMole.js";
 import "./styles.css";
-import { GAMESTATE } from "./constants";
+import { GAME_STATE } from "./constants";
 
 // useState for button to start game
 let intervalID;
@@ -26,16 +26,16 @@ const stopMovingMole = (id) => {
 
 export default function App() {
   const [score, setScore] = useState(0);
-  const [gameState, setGameState] = useState(GAMESTATE.NOT_STARTED);
+  const [gameState, setGameState] = useState(GAME_STATE.NOT_STARTED);
   const [hitPosition, setHitPosition] = useState(null);
 
   useEffect(() => {
-    if (gameState === GAMESTATE.STARTED) {
+    if (gameState === GAME_STATE.STARTED) {
       intervalID = startMovingMole(setHitPosition);
       setScore(0);
     }
 
-    if (gameState === GAMESTATE.FINISHED) {
+    if (gameState === GAME_STATE.FINISHED) {
       // display score
       // display game over
       stopMovingMole(intervalID);
@@ -43,7 +43,7 @@ export default function App() {
   }, [gameState]);
 
   const onMoleHitClickHandler = (event) => {
-    if (gameState === GAMESTATE.STARTED) {
+    if (gameState === GAME_STATE.STARTED) {
       if (hitMole(event, hitPosition) === true) {
         setScore(score + 1);
       }
@@ -53,8 +53,8 @@ export default function App() {
   return (
     <section>
       <h1>Whack-A-Mole</h1>
-      <Score score={score} />
-      {gameState === GAMESTATE.FINISHED ? <GameOver score={score} /> : null}
+      <Score score={score} />;
+      {gameState === GAME_STATE.FINISHED ? <GameOver score={score} /> : null}
       <Timer gameState={gameState} setGameState={setGameState} />
       <div id="gameBoard">
         {makeMoleHoles(gameState, onMoleHitClickHandler)}
