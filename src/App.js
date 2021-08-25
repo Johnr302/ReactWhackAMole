@@ -9,7 +9,6 @@ import { hitMole } from "./hitMole.js";
 import "./styles.css";
 import { GAME_STATE } from "./constants";
 
-// useState for button to start game
 let intervalID;
 
 const startMovingMole = (setHitPosition) => {
@@ -36,8 +35,6 @@ export default function App() {
     }
 
     if (gameState === GAME_STATE.FINISHED) {
-      // display score
-      // display game over
       stopMovingMole(intervalID);
     }
   }, [gameState]);
@@ -53,7 +50,7 @@ export default function App() {
   return (
     <section>
       <h1>Whack-A-Mole</h1>
-      <Score score={score} />;
+      <Score score={score} />
       {gameState === GAME_STATE.FINISHED ? <GameOver score={score} /> : null}
       <Timer gameState={gameState} setGameState={setGameState} />
       <div id="gameBoard">
